@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Harden the Kernel
-cat > /etc/sysctl.conf <<EOF |
+cat > /etc/sysctl.conf <<EOF
 kernel.printk = 4 4 1 7 
 kernel.panic = 10 
 kernel.sysrq = 0 
