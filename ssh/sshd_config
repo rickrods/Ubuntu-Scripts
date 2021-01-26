@@ -1,0 +1,136 @@
+# This is the sshd server system-wide configuration file.  See
+# sshd_config(5) for more information. 
+# https://man.openbsd.org/sshd_config
+# This sshd was compiled with PATH=/usr/bin:/bin:/usr/sbin:/sbin
+# The strategy used for options in the default sshd_config shipped with
+# OpenSSH is to specify options with their default value where
+# possible, but leave them commented.  Uncommented options override the
+# default value.
+#
+# This is a modified version of default config hopefully it will provide better secruity 
+# as well as better fit our use case.
+#
+# Documentation --> https://www.openssh.com/manual.html 
+
+# Here we upgrade the ssh protocol and can define port and ip
+Protocol 2
+Port 22
+#AddressFamily any
+#ListenAddress 0.0.0.0
+
+# SHA-1 use is questionable from a security perspective   
+# Further Reading --> https://csrc.nist.gov/projects/hash-functions/nist-policy-on-hash-functions 
+# Further Reading --> https://www.ssh.com/cryptography/
+#
+# Supported HostKey algorithms by order of preference.
+HostKey /etc/ssh/ssh_host_ed25519_key
+HostKey /etc/ssh/ssh_host_rsa_key
+HostKey /etc/ssh/ssh_host_ecdsa_key
+
+# Specify key exchange algorithms 
+KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
+# Specify Ciphers
+Ciphers aes256-ctr,aes192-ctr,aes128-ctr,chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com
+# Specify Message authentication code algorithms 
+MACs hmac-sha2-512,hmac-sha2-256,hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+
+# RekeyLimit Specifies the maximum amount of data that may be transmitted before the session key is renegotiated, 
+# optionally followed a maximum amount of time that may pass before the session key is renegotiated
+# I've set it to 2 hours and let the cipher handle the data
+# https://man.openbsd.org/sshd_config#RekeyLimit
+RekeyLimit default 2h
+
+# Logging 
+# The possible values are: DAEMON, USER, AUTH, LOCAL0, LOCAL1, LOCAL2, LOCAL3, LOCAL4, LOCAL5, LOCAL6, LOCAL7. The default is AUTH.
+SyslogFacility AUTH
+# The possible values are: QUIET, FATAL, ERROR, INFO, VERBOSE, DEBUG, DEBUG1, DEBUG2, and DEBUG3. The default is INFO 
+LogLevel VERBOSE
+
+# LOGIN 
+#
+LoginGraceTime 3m
+PermitRootLogin no
+StrictModes yes
+MaxAuthTries 6
+
+# Multiple sessions may be established by clients that support connection multiplexing.
+# The maximum number of open shell, login or subsystem (e.g. sftp) sessions permitted per network connection
+MaxSessions 10
+
+
+# AUTHENTICATION
+#
+# Permit authitication via Pubkey?
+PubkeyAuthentication yes
+# To disable tunneled clear text passwords, change to no here!
+PasswordAuthentication no
+# Do we really want to allow empty passwords?
+PermitEmptyPasswords no
+# Change to yes to enable challenge-response passwords (beware issues with
+# some PAM modules and threads)
+ChallengeResponseAuthentication no
+# If you just want the PAM account and session checks to run without
+# PAM authentication, then enable this but set PasswordAuthentication
+# and ChallengeResponseAuthentication to 'no'.
+UsePAM yes
+
+# https://man.openbsd.org/ssh-agent.1
+# yes = (the default) allows ssh-agent to forward info
+# no = does not allow ssh-agent to function
+AllowAgentForwarding yes
+
+# yes = (the default) or all to allow TCP forwarding, 
+# no = prevent all TCP forwarding, 
+# local = allow local (from the perspective of ssh(1)) forwarding only
+# remote = allow remote forwarding only
+AllowTcpForwarding yes
+
+# GatewayPorts = whether remote hosts are allowed to connect to ports forwarded for the client. 
+GatewayPorts no
+
+X11Forwarding no
+#X11DisplayOffset 10
+#X11UseLocalhost yes
+PermitTTY yes
+PrintMotd no
+PrintLastLog yes
+# TCPKeepAlive is spoofable so its disabled
+TCPKeepAlive no
+
+# DISCONNECT INACTIVE CLIENTS
+# sshd will send a "client alive message" every 5 minutes if no response after 6 messages (30 minutes) then the client is disconnected
+ClientAliveInterval 300
+ClientAliveCountMax 6
+
+# MaxStartups - Specifies the maximum number of concurrent unauthenticated connections to the SSH daemon. The default is 10:30:100
+MaxStartups 10:30:100
+
+# SSH Tunneling enabled or not
+PermitTunnel yes
+
+# Specifies the pathname of a directory to chroot(2) to after authentication
+ChrootDirectory none
+
+# Specifies what environment variables sent by the client will be copied into the session's environ.
+AcceptEnv LANG LC_*
+
+# override default of no subsystems 
+Subsystem sftp /usr/lib/openssh/sftp-server
+
+#UseLogin no
+#PermitUserEnvironment no
+#Compression delayed
+#PidFile /var/run/sshd.pid
+# Specifies additional text to append to the SSH protocol banner 
+#VersionAddendum none
+# Specifies no default banner path...   example = /etc/ssh/banner
+#Banner none
+# UseDNS - Specifies whether sshd should look up the remote host name. This takes time and resources with little benefit.
+#UseDNS no
+# Example of overriding settings on a per-user basis
+# Match User anoncvs
+#       X11Forwarding no
+#       AllowTcpForwarding no
+#       PermitTTY no
+#       ForceCommand cvs server
+#       PasswordAuthentication yes
