@@ -11,7 +11,7 @@ kernel.core_uses_pid = 1
 kernel.msgmnb = 65536 
 kernel.msgmax = 65536 
 vm.swappiness = 20 
-vm.dirty_ratio = 80 
+vm.dirty_ratio = 60 
 vm.dirty_background_ratio = 5 
 fs.file-max = 2097152 
 net.core.netdev_max_backlog = 262144 
@@ -130,8 +130,11 @@ iptables -A INPUT -p tcp -m conntrack --ctstate NEW -j DROP
 sudo iptables -I INPUT 1 -i lo -j ACCEPT
 # Allow establish connections to continue working
 sudo iptables -I INPUT 2 -m conntrack --ctstate RELATED,ESTABLISHED -j ACCEPT
-# I do not open port 22 for connecions. I permit my home IP access to anything instead. This is my subnet at home 67.231.40.0/24
-sudo iptables -I INPUT 3 -s 67.231.40.0/24 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+
+# I do not open port 22 for connecions. I permit my home IP access to anything instead. This is my subnet at home 67.***.**.*/24
+# sudo iptables -I INPUT 3 -s 67.***.**.*/24 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+
+
 # This is for the node to operate
 sudo iptables -A INPUT -p tcp -m multiport --ports 26656 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 
