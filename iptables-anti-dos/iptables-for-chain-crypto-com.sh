@@ -97,6 +97,8 @@ iptables -t mangle -A PREROUTING -p tcp --tcp-flags ACK,URG URG -j DROP
 iptables -t mangle -A PREROUTING -p tcp --tcp-flags ACK,PSH PSH -j DROP
 
 # Block Packets From Private Subnets (Spoofing)
+# If you have an interface on one of these networks please see the example for 127.0.0.0/* 
+# where  "! -i lo -j DROP" ensures the rule does not apply to the lo adapter
 iptables -t mangle -A PREROUTING -s 224.0.0.0/3 -j DROP 
 iptables -t mangle -A PREROUTING -s 169.254.0.0/16 -j DROP 
 iptables -t mangle -A PREROUTING -s 172.16.0.0/12 -j DROP 
