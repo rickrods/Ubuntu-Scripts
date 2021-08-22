@@ -14,8 +14,8 @@
 
 # Here we upgrade the ssh protocol and can define port and ip
 Protocol 2
-Port 22
-#AddressFamily any
+Port 222
+AddressFamily inet
 #ListenAddress 0.0.0.0
 
 # SHA-1 use is questionable from a security perspective   
@@ -31,8 +31,8 @@ HostKey /etc/ssh/ssh_host_ecdsa_key
 KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
 # Specify Ciphers
 Ciphers aes256-ctr,aes192-ctr,aes128-ctr,chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com
-# Specify Message authentication code algorithms 
-MACs hmac-sha2-512,hmac-sha2-256,hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+# Specify Message authentication code algorithms  ( CAUSING ME PROBLEMS SO I DISABLED )
+# MACs hmac-sha2-512,hmac-sha2-256,hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
 
 # RekeyLimit Specifies the maximum amount of data that may be transmitted before the session key is renegotiated, 
 # optionally followed a maximum amount of time that may pass before the session key is renegotiated
@@ -49,14 +49,13 @@ LogLevel VERBOSE
 # LOGIN 
 #
 LoginGraceTime 3m
-PermitRootLogin no
+PermitRootLogin without-password
 StrictModes yes
 MaxAuthTries 6
 
 # Multiple sessions may be established by clients that support connection multiplexing.
 # The maximum number of open shell, login or subsystem (e.g. sftp) sessions permitted per network connection
 MaxSessions 10
-
 
 # AUTHENTICATION
 #
