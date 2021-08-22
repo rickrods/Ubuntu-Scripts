@@ -6,3 +6,5 @@ wget https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/security/ipt
 chmod +x iptables-anti-dos.sh
 sudo ./iptables-anti-dos.sh
 ```
+
+#### FILE NEEDS REVIEW
