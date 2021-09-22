@@ -31,8 +31,8 @@ HostKey /etc/ssh/ssh_host_ecdsa_key
 KexAlgorithms curve25519-sha256@libssh.org,ecdh-sha2-nistp521,ecdh-sha2-nistp384,ecdh-sha2-nistp256,diffie-hellman-group-exchange-sha256
 # Specify Ciphers
 Ciphers aes256-ctr,aes192-ctr,aes128-ctr,chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com
-# Specify Message authentication code algorithms  ( CAUSING ME PROBLEMS SO I DISABLED )
-# MACs hmac-sha2-512,hmac-sha2-256,hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
+# Specify Message authentication code algorithms 
+MACs hmac-sha2-512,hmac-sha2-256,hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com
 
 # RekeyLimit Specifies the maximum amount of data that may be transmitted before the session key is renegotiated, 
 # optionally followed a maximum amount of time that may pass before the session key is renegotiated
