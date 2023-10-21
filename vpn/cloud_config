@@ -1,0 +1,19 @@
+#cloud-config
+users:
+  - name: vpn
+    groups: users, admin
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    shell: /bin/bash
+    ssh_authorized_keys:
+      - <public_ssh_key>
+packages:
+  - openvpn
+  - jq
+  - nmon
+  - nload
+  - net-tools
+  - whois
+package_update: true
+package_upgrade: true
+
+runcmd: wget -O /home/vpn/openvpn_setup.sh https://raw.githubusercontent.com/angristan/openvpn-install/master/openvpn-install.sh && chmod +x /home/vpn/openvpn_setup.sh
