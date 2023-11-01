@@ -71,7 +71,7 @@ ChallengeResponseAuthentication no
 # If you just want the PAM account and session checks to run without
 # PAM authentication, then enable this but set PasswordAuthentication
 # and ChallengeResponseAuthentication to 'no'.
-UsePAM yes
+UsePAM no
 
 # https://man.openbsd.org/ssh-agent.1
 # yes = (the default) allows ssh-agent to forward info
@@ -82,7 +82,7 @@ AllowAgentForwarding yes
 # no = prevent all TCP forwarding, 
 # local = allow local (from the perspective of ssh(1)) forwarding only
 # remote = allow remote forwarding only
-AllowTcpForwarding yes
+AllowTcpForwarding no
 
 # GatewayPorts = whether remote hosts are allowed to connect to ports forwarded for the client. 
 GatewayPorts no
@@ -123,13 +123,7 @@ Subsystem sftp /usr/lib/openssh/sftp-server
 # Specifies additional text to append to the SSH protocol banner 
 #VersionAddendum none
 # Specifies no default banner path...   example = /etc/ssh/banner
-#Banner none
+Banner /etc/banner
 # UseDNS - Specifies whether sshd should look up the remote host name. This takes time and resources with little benefit.
 #UseDNS no
-# Example of overriding settings on a per-user basis
-# Match User anoncvs
-#       X11Forwarding no
-#       AllowTcpForwarding no
-#       PermitTTY no
-#       ForceCommand cvs server
-#       PasswordAuthentication yes
+
