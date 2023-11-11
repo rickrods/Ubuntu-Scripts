@@ -1,9 +1,17 @@
-# Ubuntu-Scripts
+# Ubuntu Things
 
-I don't recommend using these without knowing what your doing.
 
-# SSH
-```wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/ImStaked/Ubuntu-Scripts/main/configs/ubuntu18.04/sshd_config && systemctl restart sshd```
 
-# System Journal
-```wget -O /etc/system```
+# Ubuntu Config Files - 22.04
+
+### SSH  - hardened   
+```wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/sshd_config && systemctl restart sshd```
+
+### System Journal     
+```wget -O /etc/systemd/journald.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/journalctl.conf && systemctl restart systemd-journald```
+
+### System - reboot to apply  
+```wget -O /etc/systemd/system.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/systemd-system.conf```
+
+### NTP
+```wget -O /etc/systemd/timesyncd.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/timesyncd.conf && systemctl restart systemd-timesyncd```
