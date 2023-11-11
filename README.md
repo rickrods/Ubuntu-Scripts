@@ -1,17 +1,15 @@
 # Ubuntu Things
 
+- Ubuntu Config Files - 22.04
 
-
-# Ubuntu Config Files - 22.04
-
-### SSH  - hardened   
+#### SSH  - hardened   
 ```wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/sshd_config && systemctl restart sshd```
 
-### System Journal     
+#### System Journal     
 ```wget -O /etc/systemd/journald.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/journalctl.conf && systemctl restart systemd-journald```
 
-### System - reboot to apply  
+#### System - reboot to apply  
 ```wget -O /etc/systemd/system.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/systemd-system.conf```
 
-### NTP
+#### NTP
 ```wget -O /etc/systemd/timesyncd.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/timesyncd.conf && systemctl restart systemd-timesyncd```
