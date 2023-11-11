@@ -13,3 +13,6 @@
 
 #### NTP
 ```wget -O /etc/systemd/timesyncd.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/timesyncd.conf && systemctl restart systemd-timesyncd```
+
+#### User limits
+```wget -O /etc/systemd/timesyncd.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/user.conf && systemctl restart systemd-user-sessions.service```
