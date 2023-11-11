@@ -8,7 +8,7 @@
 #### System Journal     
 ```wget -O /etc/systemd/journald.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/journalctl.conf && systemctl restart systemd-journald```
 
-#### System - reboot to apply  
+#### System Limits - reboot to apply  
 ```wget -O /etc/systemd/system.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/systemd-system.conf```
 
 #### NTP
