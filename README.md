@@ -1,6 +1,4 @@
-# Ubuntu Things
-
-- Ubuntu Config Files - 22.04
+# Ubuntu Config Files - 22.04
 
 #### SSH  - hardened   
 ```sudo wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/sshd_config && sudo systemctl restart sshd```
@@ -11,6 +9,5 @@
 #### System Limits - reboot to apply  
 ```sudo wget -O /etc/systemd/system.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/system.conf```
 
-#### NTP
-```wget -O /etc/systemd/timesyncd.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/timesyncd.conf && systemctl restart systemd-timesyncd```
+
 
