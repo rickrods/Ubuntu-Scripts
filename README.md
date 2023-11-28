@@ -9,5 +9,5 @@
 #### System Limits - reboot to apply  
 ```sudo wget -O /etc/systemd/system.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/system.conf```
 
-
-
+#### Banner
+```sudo wget -O /etc/banner https://raw.githubusercontent.com/ImStaked/Ubuntu-Scripts/main/configs/banner```
