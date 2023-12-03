@@ -1,15 +1,13 @@
-# Ubuntu Things
-
-- Ubuntu Config Files - 22.04
+# Ubuntu Config Files - 22.04
 
 #### SSH  - hardened   
-```wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/sshd_config && systemctl restart sshd```
+```sudo wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/sshd_config && sudo systemctl restart sshd```
 
 #### System Journal     
-```wget -O /etc/systemd/journald.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/journalctl.conf && systemctl restart systemd-journald```
+```sudo wget -O /etc/systemd/journald.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/journalctl.conf && sudo systemctl restart systemd-journald```
 
-#### System - reboot to apply  
-```wget -O /etc/systemd/system.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/systemd-system.conf```
+#### System Limits - reboot to apply  
+```sudo wget -O /etc/systemd/system.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/system.conf```
 
-#### NTP
-```wget -O /etc/systemd/timesyncd.conf https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/timesyncd.conf && systemctl restart systemd-timesyncd```
+#### Banner
+```sudo wget -O /etc/banner https://raw.githubusercontent.com/ImStaked/Ubuntu-Scripts/main/configs/banner```
