@@ -1,4 +1,11 @@
-# Ubuntu Config Files - 22.04
+# Ubuntu Config Files 
+
+#### UPDATE SCRIPT
+```wget https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/default_setup.sh -O update.sh && chmod +x update.sh && ./update.sh```
+
+
+
+
 
 #### SSH  - hardened   
 ```sudo wget -O /etc/ssh/sshd_config https://raw.githubusercontent.com/rickrods/Ubuntu-Scripts/main/configs/sshd_config && sudo systemctl restart sshd```
